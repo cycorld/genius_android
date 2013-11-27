@@ -1,5 +1,7 @@
 package net.likelion;
 
+import org.apache.http.util.EncodingUtils;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -22,7 +24,10 @@ public class WebviewActivity extends Activity {
 		WebView myWebView = (WebView) findViewById(R.id.webview);
 		WebSettings webSettings = myWebView.getSettings();
 		webSettings.setJavaScriptEnabled(true);
-		myWebView.loadUrl("http://genius.doo2.net/mobile");
+		
+		String url = "http://genius.doo2.net/mobile";
+		String postData = "id=" + val;
+		myWebView.postUrl(url, EncodingUtils.getBytes(postData, "BASE64"));
 
 	}
 	
