@@ -26,7 +26,8 @@
         </activity>
         <activity
             android:name="net.likelion.WebviewActivity"
-            android:label="@string/title_activity_webview" >
+            android:label="@string/title_activity_webview"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
     </application>
 
