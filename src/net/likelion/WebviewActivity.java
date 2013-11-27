@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 public class WebviewActivity extends Activity {
 	public static final String PREFS_NAME = "TheGeniusPrefs";
@@ -16,6 +18,11 @@ public class WebviewActivity extends Activity {
 		SharedPreferences code = getSharedPreferences(PREFS_NAME, 0);
 		String val = String.valueOf(code.getInt("user_id", 1));
 		Log.d("DEBUG", val);
+		
+		WebView myWebView = (WebView) findViewById(R.id.webview);
+		WebSettings webSettings = myWebView.getSettings();
+		webSettings.setJavaScriptEnabled(true);
+		myWebView.loadUrl("http://genius.doo2.net/mobile");
 
 	}
 	
