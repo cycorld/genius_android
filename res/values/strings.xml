@@ -6,5 +6,7 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="login_info">사용자의 코드를 입력바랍니다</string>
+    <string name="login_btn">로그인</string>
 
 </resources>
