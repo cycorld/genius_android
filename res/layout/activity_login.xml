@@ -27,8 +27,9 @@
         android:layout_marginTop="30dp"
         android:ems="6"
         android:inputType="numberDecimal">
-        <requestFocus />
-    </EditText>
+        
+         
+       </EditText>
 
     <Button
         android:id="@+id/login_btn"

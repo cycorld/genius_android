@@ -1,5 +1,94 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/webviewlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/webview_margin"
+    android:paddingLeft="@dimen/webview_margin"
+    android:paddingRight="@dimen/webview_margin"
+    android:paddingTop="@dimen/webview_margin"
+    tools:context=".WebviewActivity" >
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal|center" >
+            <ImageButton
+		        android:id="@+id/button1"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_horizontal"
+		        android:layout_marginTop="0dp"
+		        android:background="@drawable/imgbtn1" />
+            <ImageButton
+		        android:id="@+id/button2"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_horizontal"
+		        android:layout_marginTop="0dp"
+		        android:background="@drawable/imgbtn2" />
+            <ImageButton
+		        android:id="@+id/button3"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_horizontal"
+		        android:layout_marginTop="0dp"
+		        android:background="@drawable/imgbtn3" />
+            <ImageButton
+		        android:id="@+id/button4"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_horizontal"
+		        android:layout_marginTop="0dp"
+		        android:background="@drawable/imgbtn4" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/msg_part"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/buttons" >
+	        <EditText
+	            android:id="@+id/sendMsg"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentLeft="true"
+	            android:ems="10">
+	        	<requestFocus />
+	        </EditText>
+	        <Button
+	            android:id="@+id/sendMsgBtn"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentRight="true"
+	            android:text="Send" />
+        </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/webview_part"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/msg_part"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical" >
+
+        <WebView
+            android:id="@+id/webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp" />
+    </LinearLayout>
+
+
+</RelativeLayout>
+<!--
 <WebView  xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/webview"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
 />
+-->

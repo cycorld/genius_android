@@ -29,8 +29,8 @@
         <activity
             android:name="net.likelion.WebviewActivity"
             android:label="@string/title_activity_webview"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="adjustResize" >
         </activity>
     </application>
 

@@ -52,7 +52,6 @@ public class LoginActivity extends Activity {
 		editor.putInt("user_id", codeVal);
 		editor.commit();
 		
-		
 		Intent webviewActivity = new Intent(getApplicationContext(), WebviewActivity.class);
 		startActivity(webviewActivity);
 		finish();
