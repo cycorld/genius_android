@@ -23,5 +23,5 @@ public class TouchWebView extends WebView {
     public boolean onTouchEvent(MotionEvent event){
         requestDisallowInterceptTouchEvent(true);
         return super.onTouchEvent(event);
-    }          
+    }
 }

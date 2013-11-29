@@ -50,7 +50,7 @@
 
         <LinearLayout
             android:id="@+id/buttons_part"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
@@ -62,6 +62,7 @@
                 android:id="@+id/button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
                 android:layout_marginTop="0dp"
                 android:background="@drawable/imgbtn1" />
 
@@ -69,6 +70,7 @@
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
                 android:layout_marginTop="0dp"
                 android:background="@drawable/imgbtn2" />
 
@@ -76,6 +78,7 @@
                 android:id="@+id/button3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
                 android:layout_marginTop="0dp"
                 android:background="@drawable/imgbtn3" />
 

@@ -24,6 +24,10 @@ import org.apache.http.util.EncodingUtils;
 import org.apache.http.util.EntityUtils;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -120,49 +124,100 @@ public class WebviewActivity extends Activity {
 				return handled;
 			}
 		});
-		/*
-		sendBtn.setOnClickListener(new OnClickListener() {    
-			@Override
-			public void onClick(View arg0) {
-				Log.d("DEBUG", "btn1 clicked");
-				msg = msgEdit.getText().toString();
-				if (msg != "") {
-					msgEdit.setText("");
-					new SendPost().execute();
-				}
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("절대찬성입니까?")
+		.setTitle("확인");
+		// Add the buttons
+		builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				// User clicked OK button
+				msg = "/s_agree";
+				new SendPost().execute();
 			}
 		});
-		 */
+		builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				// User cancelled the dialog
+			}
+		});
+		final AlertDialog dialog1 = builder.create();
+
+
+
+
+		builder.setMessage("찬성입니까?").setTitle("확인");
+		// Add the buttons
+		builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				// User clicked OK button
+				msg = "/agree";
+				new SendPost().execute();
+			}
+		});
+		builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				// User cancelled the dialog
+			}
+		});
+		final AlertDialog dialog2 = builder.create();
+		builder.setMessage("반대입니까?").setTitle("확인");
+		// Add the buttons
+		builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				// User clicked OK button
+				msg = "/disagree";
+				new SendPost().execute();
+			}
+		});
+		builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				// User cancelled the dialog
+			}
+		});
+		final AlertDialog dialog3 = builder.create();
+		builder.setMessage("절대반대입니까?").setTitle("확인");
+		// Add the buttons
+		builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				// User clicked OK button
+				msg = "/s_disagree";
+				new SendPost().execute();
+			}
+		});
+		builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				// User cancelled the dialog
+			}
+		});
+		final AlertDialog dialog4 = builder.create();
+
 		btn1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				Log.d("DEBUD", "btn1 clicked");
-				msg = "/s_agree";
-				new SendPost().execute();
+				dialog1.show();
+
 			}
 		});
 		btn2.setOnClickListener(new OnClickListener() {    
 			@Override
 			public void onClick(View arg0) {
-				Log.d("DEBUD", "btn1 clicked");
-				msg = "/agree";
-				new SendPost().execute();
+				dialog2.show();
+
 			}
 		});
 		btn3.setOnClickListener(new OnClickListener() {    
 			@Override
 			public void onClick(View arg0) {
-				Log.d("DEBUD", "btn1 clicked");
-				msg = "/disagree";
-				new SendPost().execute();
+				dialog3.show();
+
 			}
 		});
 		btn4.setOnClickListener(new OnClickListener() {    
 			@Override
 			public void onClick(View arg0) {
-				Log.d("DEBUD", "btn1 clicked");
-				msg = "/s_disagree";
-				new SendPost().execute();
+				dialog4.show();
+
 			}
 		});
 
@@ -217,6 +272,7 @@ public class WebviewActivity extends Activity {
 			return null;
 		}
 	}
+
 }
 
 
