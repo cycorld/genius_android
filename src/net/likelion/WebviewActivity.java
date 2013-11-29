@@ -29,19 +29,26 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnDragListener;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 public class WebviewActivity extends Activity {
 	public static final String PREFS_NAME = "TheGeniusPrefs";
+	public static final String HOST = "http://genius.doo2.net";
 	InputMethodManager mImm;
 	private String selectedBtn;
 	private String msg;
@@ -50,6 +57,8 @@ public class WebviewActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_webview);
+		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
 
 		SharedPreferences code = getSharedPreferences(PREFS_NAME, 0);
 		String val = String.valueOf(code.getInt("user_id", 0));
@@ -71,11 +80,12 @@ public class WebviewActivity extends Activity {
 		webSettings.setAppCachePath("");
 		webSettings.setAppCacheMaxSize(5*1024*1024);
 
+		final ScrollView myScrollView = (ScrollView) findViewById(R.id.scrollView1);
+		myScrollView.getParent().requestDisallowInterceptTouchEvent(true);
 
 
 
-
-		String url = "http://192.168.10.56:3000/mobile";
+		String url = HOST + "/mobi	le";
 		//String url = "http://m.facebook.com";
 		String postData = "id=" + val;
 		myWebView.postUrl(url, EncodingUtils.getBytes(postData, "BASE64"));
@@ -89,9 +99,28 @@ public class WebviewActivity extends Activity {
 		ImageButton btn2 = (ImageButton)findViewById(R.id.button2);
 		ImageButton btn3 = (ImageButton)findViewById(R.id.button3);
 		ImageButton btn4 = (ImageButton)findViewById(R.id.button4);
-		Button sendBtn = (Button)findViewById(R.id.sendMsgBtn);
+		//Button sendBtn = (Button)findViewById(R.id.sendMsgBtn);
 		final EditText msgEdit = (EditText)findViewById(R.id.sendMsg);
 
+		msgEdit.setOnEditorActionListener(new OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent envent) {
+				// TODO Auto-generated method stub
+				boolean handled = false;
+				if (actionId == EditorInfo.IME_ACTION_SEND) {
+					//sendMessage();
+					Log.d("DEBUG", "btn1 clicked");
+					msg = msgEdit.getText().toString();
+					if (msg != "") {
+						msgEdit.setText("");
+						new SendPost().execute();
+					}
+					handled = true;
+				}
+				return handled;
+			}
+		});
+		/*
 		sendBtn.setOnClickListener(new OnClickListener() {    
 			@Override
 			public void onClick(View arg0) {
@@ -103,6 +132,7 @@ public class WebviewActivity extends Activity {
 				}
 			}
 		});
+		 */
 		btn1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -158,7 +188,7 @@ public class WebviewActivity extends Activity {
 			post.add(new BasicNameValuePair("target_user_id", "1"));
 			post.add(new BasicNameValuePair("content", msg));
 			post.add(new BasicNameValuePair("time_id", "3:3"));
-			
+
 
 			// 楷搬 HttpClient 按眉 积己
 			HttpClient client = new DefaultHttpClient();
@@ -169,7 +199,7 @@ public class WebviewActivity extends Activity {
 			HttpConnectionParams.setSoTimeout(params, 5000);
 
 			// Post按眉 积己
-			HttpPost httpPost = new HttpPost("http://192.168.10.56:3000/web/push");
+			HttpPost httpPost = new HttpPost(HOST + "/web/push");
 			Log.d("DEBUG", "0");
 
 			try {
